@@ -1,7 +1,7 @@
 package guru.sfg.brewery.web.controllers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * created BeerControllerIT in guru.sfg.brewery.web.controllers
  * in project scc-brewery
  */
-@WebMvcTest
+@SpringBootTest
 public class BeerControllerIT extends BaseIT{
 
     @Test
