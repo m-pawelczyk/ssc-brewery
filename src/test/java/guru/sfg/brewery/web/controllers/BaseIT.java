@@ -31,6 +31,11 @@ public abstract class BaseIT {
                 .build();
     }
 
+    public static Stream<Arguments> getStreamAdminCustomer() {
+        return Stream.of(Arguments.of("spring" , "guru"),
+                Arguments.of("ryba", "akwarium"));
+    }
+
     public static Stream<Arguments> getStreamAllUsers() {
         return Stream.of(Arguments.of("spring" , "guru"),
                 Arguments.of("ryba", "akwarium"),
