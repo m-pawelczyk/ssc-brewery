@@ -95,17 +95,17 @@ public class DefaultBreweryLoader implements CommandLineRunner {
                 .build());
 
         //create users
-        User stPeteUser = userRepository.save(User.builder().username("stpete")
+        User stPeteUser = userRepository.save(User.builder().username(STPETE_USER)
                 .password(passwordEncoder.encode("password"))
                 .customer(stPeteCustomer)
                 .role(customerRole).build());
 
-        User dunedinUser = userRepository.save(User.builder().username("dunedin")
+        User dunedinUser = userRepository.save(User.builder().username(DUNEDIN_USER)
                 .password(passwordEncoder.encode("password"))
                 .customer(dunedinCustomer)
                 .role(customerRole).build());
 
-        User keywest = userRepository.save(User.builder().username("keywest")
+        User keywest = userRepository.save(User.builder().username(KEYWEST_USER)
                 .password(passwordEncoder.encode("password"))
                 .customer(keyWestCustomer)
                 .role(customerRole).build());
@@ -226,10 +226,12 @@ public class DefaultBreweryLoader implements CommandLineRunner {
         Authority readOrder = authorityRepository.save(Authority.builder().permission("order.read").build());
         Authority updateOrder = authorityRepository.save(Authority.builder().permission("order.update").build());
         Authority deleteOrder = authorityRepository.save(Authority.builder().permission("order.delete").build());
+        Authority pickupOrder = authorityRepository.save(Authority.builder().permission("order.pickup").build());
         Authority createOrderCustomer = authorityRepository.save(Authority.builder().permission("customer.order.create").build());
         Authority readOrderCustomer = authorityRepository.save(Authority.builder().permission("customer.order.read").build());
         Authority updateOrderCustomer = authorityRepository.save(Authority.builder().permission("customer.order.update").build());
         Authority deleteOrderCustomer = authorityRepository.save(Authority.builder().permission("customer.order.delete").build());
+        Authority pickupOrderCustomer = authorityRepository.save(Authority.builder().permission("customer.order.pickup").build());
 
         Role adminRole = roleRepository.save(Role.builder().name("ADMIN").build());
         Role customerRole = roleRepository.save(Role.builder().name("CUSTOMER").build());
@@ -237,10 +239,10 @@ public class DefaultBreweryLoader implements CommandLineRunner {
 
         adminRole.setAuthorities(new HashSet<>(Set.of(createBeer, updateBeer, readBeer, deleteBeer, createCustomer, readCustomer,
                 updateCustomer, deleteCustomer, createBrewery, readBrewery, updateBrewery, deleteBrewery,
-                createOrder, readOrder, updateOrder, deleteOrder)));
+                createOrder, readOrder, updateOrder, deleteOrder, pickupOrder)));
 
         customerRole.setAuthorities(new HashSet<>(Set.of(readBeer, readCustomer, readBrewery, createOrderCustomer, readOrderCustomer,
-                updateOrderCustomer, deleteOrderCustomer)));
+                updateOrderCustomer, deleteOrderCustomer, pickupOrderCustomer)));
 
         userRole.setAuthorities(new HashSet<>(Set.of(readBeer)));
 
@@ -259,8 +261,8 @@ public class DefaultBreweryLoader implements CommandLineRunner {
                 .build());
 
         userRepository.save(User.builder()
-                .username("scott")
-                .password(passwordEncoder.encode("tiger"))
+                .username("ryba")
+                .password(passwordEncoder.encode("akwarium"))
                 .role(customerRole)
                 .build());
 
