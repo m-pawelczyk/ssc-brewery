@@ -44,7 +44,7 @@ public class UserController {
         return "user/register2fa";
     }
 
-    @PostMapping
+    @PostMapping("/register2fa")
     public String confirm2Fa(@RequestParam Integer verifyCode){
 
         User user = getUser();
@@ -53,7 +53,7 @@ public class UserController {
 
         if (googleAuthenticator.authorizeUser(user.getUsername(), verifyCode)) {
             User savedUser = userRepository.findById(user.getId()).orElseThrow();
-            savedUser.setUserGoogle2fa(true);
+            savedUser.setUseGoogle2f(true);
             userRepository.save(savedUser);
 
             return "/index";
@@ -68,7 +68,7 @@ public class UserController {
         return "user/verify2fa";
     }
 
-    @PostMapping
+    @PostMapping("/verify2fa")
     public String verifyPostOf2Fa(@RequestParam Integer verifyCode){
 
         User user = getUser();
